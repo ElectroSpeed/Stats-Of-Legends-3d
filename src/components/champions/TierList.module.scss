@@ -1,0 +1,20 @@
+.filters { @include flex(row, flex-start, center, space("xs")); margin-bottom: space("lg"); flex-wrap: wrap; }
+.filter {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  color: $color-text-muted;
+  padding: space("xs") space("md");
+  border-radius: $radius-sm;
+  font-weight: 600;
+}
+.active { color: $color-blue-deep; background: $color-gold; border-color: $color-gold; }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  th, td { text-align: left; padding: space("sm") space("md"); border-bottom: 1px solid $color-border; }
+  th { color: $color-text-muted; font-size: fs("sm"); }
+  tbody tr:hover { background: $color-surface; }
+}
+.name { font-weight: 700; }
+.error { color: $color-danger; }
+.empty { color: $color-text-muted; }

@@ -1,0 +1,18 @@
+.button {
+  padding: space("sm") space("lg");
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  font-weight: 600;
+  transition: background 0.15s ease;
+}
+
+.primary {
+  background: $color-gold;
+  color: $color-blue-deep;
+  border-color: $color-gold;
+}
+
+.ghost {
+  background: transparent;
+  color: $color-text;
+}

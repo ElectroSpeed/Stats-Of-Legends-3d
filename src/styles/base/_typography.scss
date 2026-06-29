@@ -1,0 +1,14 @@
+@use "../abstracts" as *;
+
+body {
+  font-family: $font-sans;
+  font-size: fs("md");
+  color: $color-text;
+  background: $color-bg;
+}
+
+h1, h2, h3 {
+  font-family: $font-display;
+  line-height: 1.2;
+  color: $color-gold-light;
+}

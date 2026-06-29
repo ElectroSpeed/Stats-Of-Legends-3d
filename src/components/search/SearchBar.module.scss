@@ -1,0 +1,35 @@
+.form {
+  @include flex(row, center, stretch, 0);
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $color-surface;
+
+  &:focus-within { border-color: $color-hextech; }
+}
+.region {
+  background: $color-surface-2;
+  color: $color-text;
+  border: none;
+  padding-inline: space("sm");
+  cursor: pointer;
+}
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: $color-text;
+  padding: space("sm") space("md");
+  font-size: fs("md");
+  &:focus { outline: none; }
+}
+.button {
+  background: $color-gold;
+  color: $color-blue-deep;
+  border: none;
+  padding-inline: space("lg");
+  font-weight: 700;
+  &:hover { background: $color-gold-light; }
+}

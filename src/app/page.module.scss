@@ -1,0 +1,35 @@
+.hero {
+  @include container(720px);
+  @include flex(column, center, center, space("lg"));
+  min-height: 70vh;
+  text-align: center;
+}
+
+.title {
+  font-size: fs("2xl");
+  letter-spacing: 0.04em;
+
+  span {
+    color: $color-gold;
+  }
+}
+
+.subtitle {
+  color: $color-text-muted;
+  max-width: 48ch;
+}
+
+.quicklinks {
+  @include flex(row, center, center, space("lg"));
+  flex-wrap: wrap;
+  margin-top: space("md");
+
+  a {
+    color: $color-hextech;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

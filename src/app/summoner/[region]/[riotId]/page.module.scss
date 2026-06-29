@@ -1,0 +1,14 @@
+.page {
+  @include container(1000px);
+  @include flex(column, flex-start, stretch, space("lg"));
+  padding-block: space("xl");
+}
+
+.ranks {
+  @include flex(row, flex-start, stretch, space("md"));
+  flex-wrap: wrap;
+}
+
+.unranked {
+  color: $color-text-muted;
+}

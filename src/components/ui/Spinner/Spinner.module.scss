@@ -1,0 +1,10 @@
+.wrap { @include flex(row, center, center, space("sm")); padding: space("lg"); }
+.label { color: $color-text-muted; font-size: fs("sm"); }
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid $color-border;
+  border-top-color: $color-hextech;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

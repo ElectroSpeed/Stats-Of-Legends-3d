@@ -1,0 +1,21 @@
+.row {
+  @include flex(row, space-between, center, space("md"));
+  flex-wrap: wrap;
+  padding: space("sm") space("md");
+  border-radius: $radius-md;
+  border-left: 4px solid transparent;
+  background: $color-surface;
+}
+.win { border-left-color: $color-success; }
+.loss { border-left-color: $color-danger; }
+.result { @include flex(column, center, flex-start, 2px); min-width: 90px; }
+.meta { font-size: fs("xs"); color: $color-text-muted; }
+.champ { @include flex(column, center, flex-start, 2px); min-width: 120px; }
+.champName { font-weight: 700; }
+.role { font-size: fs("xs"); color: $color-text-muted; }
+.kda { @include flex(column, center, flex-start, 2px); min-width: 110px; }
+.deaths { color: $color-danger; }
+.ratio { font-size: fs("xs"); color: $color-text-muted; }
+.stats { @include flex(column, center, flex-start, 2px); font-size: fs("xs"); color: $color-text-muted; }
+.items { @include flex(row, flex-start, center, 2px); flex-wrap: wrap; }
+.item { border-radius: $radius-sm; background: $color-surface-2; }

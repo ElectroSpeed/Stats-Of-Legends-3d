@@ -1,0 +1,15 @@
+@use "sass:map";
+@use "tokens" as *;
+
+// Accès typé aux maps de tokens.
+@function space($key) {
+  @return map.get($spacing, $key);
+}
+
+@function fs($key) {
+  @return map.get($font-size, $key);
+}
+
+@function z($key) {
+  @return map.get($z, $key);
+}

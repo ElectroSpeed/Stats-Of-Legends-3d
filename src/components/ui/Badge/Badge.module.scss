@@ -1,0 +1,14 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: space("xs");
+  padding: 2px space("sm");
+  border-radius: $radius-sm;
+  font-size: fs("xs");
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.win { background: rgba($color-success, 0.15); color: lighten($color-success, 15%); }
+.loss { background: rgba($color-danger, 0.15); color: lighten($color-danger, 10%); }
+.gold { background: rgba($color-gold, 0.15); color: $color-gold; }
+.neutral { background: $color-surface-2; color: $color-text-muted; }

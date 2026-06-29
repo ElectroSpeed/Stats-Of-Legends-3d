@@ -1,0 +1,16 @@
+.header { @include flex(row, flex-start, center, space("lg")); }
+.iconWrap { position: relative; }
+.icon { border-radius: $radius-md; border: 2px solid $color-gold; }
+.level {
+  position: absolute;
+  bottom: -8px; left: 50%; transform: translateX(-50%);
+  background: $color-surface-2;
+  border: 1px solid $color-border;
+  border-radius: 999px;
+  padding: 0 space("sm");
+  font-size: fs("xs");
+  font-weight: 700;
+}
+.name { font-size: fs("xl"); }
+.tag { color: $color-text-muted; margin-left: space("xs"); font-weight: 400; }
+.region { color: $color-hextech; font-weight: 600; }

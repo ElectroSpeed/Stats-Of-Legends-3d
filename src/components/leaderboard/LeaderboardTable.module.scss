@@ -1,0 +1,16 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    text-align: left;
+    padding: space("sm") space("md");
+    border-bottom: 1px solid $color-border;
+  }
+  th { color: $color-text-muted; font-size: fs("sm"); }
+  tbody tr:hover { background: $color-surface; }
+  a:hover { color: $color-gold; }
+}
+.rank { font-weight: 700; color: $color-gold; }
+.tag { color: $color-text-muted; margin-left: 2px; }
+.empty { color: $color-text-muted; }

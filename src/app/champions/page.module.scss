@@ -1,0 +1,7 @@
+.page {
+  @include container(1000px);
+  padding-block: space("xl");
+}
+.title {
+  margin-bottom: space("lg");
+}

@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "tokens" as *;
+
+// Media query mobile-first à partir d'un breakpoint nommé.
+@mixin respond($key) {
+  $bp: map.get($breakpoints, $key);
+  @if $bp == null {
+    @error "Breakpoint inconnu : #{$key}";
+  }
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+// Conteneur centré.
+@mixin container($max: 1280px) {
+  width: 100%;
+  max-width: $max;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+// Flex helper.
+@mixin flex($dir: row, $justify: flex-start, $align: stretch, $gap: 0) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+// Occupe tout l'espace (utile pour les canvas 3D).
+@mixin fill {
+  position: absolute;
+  inset: 0;
+}

@@ -1,0 +1,5 @@
+// Feuille globale unique (importée dans app/layout.tsx).
+// Les abstracts sont auto-injectés via next.config.ts.
+@use "base/reset";
+@use "base/typography";
+@use "base/app";

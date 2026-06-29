@@ -1,0 +1,59 @@
+{
+  "name": "stats-of-legends",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Plateforme web immersive dédiée à League of Legends : statistiques (OP.GG-like), carte 3D de Runeterra et builder/theorycraft 3D.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write \"src/**/*.{ts,tsx,scss}\"",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio",
+    "prepare": "prisma generate || true"
+  },
+  "dependencies": {
+    "next": "^15.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@prisma/client": "^6.3.0",
+    "@tanstack/react-query": "^5.66.0",
+    "ioredis": "^5.4.0",
+    "zod": "^3.24.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.474.0",
+    "recharts": "^2.15.0",
+    "zustand": "^5.0.0",
+    "three": "^0.169.0",
+    "@react-three/fiber": "^9.0.0",
+    "@react-three/drei": "^10.0.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.169.0",
+    "prisma": "^6.3.0",
+    "sass": "^1.80.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.3.0",
+    "prettier": "^3.3.0",
+    "vitest": "^2.1.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "tsx": "^4.19.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}

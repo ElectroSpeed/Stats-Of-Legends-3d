@@ -1,0 +1,183 @@
+// Stats Of Legends — schéma PostgreSQL (Prisma).
+// Conçu pour être propre et extensible : enums typés, index ciblés,
+// modèles de cache séparés des modèles d'agrégation statistique.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ===================== Enums =====================
+
+enum Role {
+  TOP
+  JUNGLE
+  MID
+  ADC
+  SUPPORT
+  UNKNOWN
+}
+
+enum QueueType {
+  RANKED_SOLO_5x5
+  RANKED_FLEX_SR
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+// ===================== Cache invocateurs & matchs =====================
+
+model Summoner {
+  puuid          String    @id
+  gameName       String
+  tagLine        String
+  region         String // plateforme : euw1, na1, kr...
+  profileIconId  Int
+  summonerLevel  Int
+  revisionDate   BigInt?
+  views          Int       @default(0) // popularité (tracker)
+  lastMatchFetch DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  ranks   SummonerRank[]
+  matches SummonerMatch[]
+
+  @@unique([gameName, tagLine, region])
+  @@index([region])
+}
+
+model SummonerRank {
+  id            String    @id @default(cuid())
+  summonerPuuid String
+  summoner      Summoner  @relation(fields: [summonerPuuid], references: [puuid], onDelete: Cascade)
+  queueType     QueueType
+  tier          String
+  rank          String
+  leaguePoints  Int
+  wins          Int
+  losses        Int
+  // Optimisation leaderboard : valeur monotone pour tri (tier+rank+LP).
+  rankValue     BigInt    @default(0)
+  legendScore   Float     @default(0)
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([summonerPuuid, queueType])
+  @@index([queueType, rankValue]) // tri critique du leaderboard
+  @@index([summonerPuuid])
+}
+
+model Match {
+  id           String   @id // EUW1_123456789
+  region       String
+  gameCreation DateTime
+  gameDuration Int // secondes
+  gameMode     String
+  gameVersion  String
+  patch        String // ex. "14.24"
+  averageTier  String?
+  jsonData     Json // payload Match-V5 complet (source de vérité)
+  createdAt    DateTime @default(now())
+
+  participants SummonerMatch[]
+
+  @@index([patch])
+  @@index([region, gameCreation])
+}
+
+model SummonerMatch {
+  summonerPuuid String
+  matchId       String
+  summoner      Summoner @relation(fields: [summonerPuuid], references: [puuid], onDelete: Cascade)
+  match         Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  championId  Int
+  role        Role     @default(UNKNOWN)
+  win         Boolean
+  kills       Int
+  deaths      Int
+  assists     Int
+
+  // Colonnes d'optimisation (évitent de parser le JSON pour les listes).
+  totalDamageToChampions Int     @default(0)
+  totalMinionsKilled     Int     @default(0)
+  goldEarned             Int     @default(0)
+  visionScore            Int     @default(0)
+  items                  Json? // tableau d'itemIds
+  legendScore            Float   @default(0)
+  gameCreation           DateTime
+
+  @@id([summonerPuuid, matchId])
+  @@index([summonerPuuid, gameCreation])
+  @@index([matchId])
+  @@index([championId])
+}
+
+// ===================== Agrégation statistique (tier list) =====================
+
+model ChampionStat {
+  id         String @id @default(cuid())
+  championId String
+  role       Role
+  tier       String // bucket d'élo agrégé : "PLATINUM_PLUS", "ALL"...
+  patch      String
+
+  matches Int @default(0)
+  wins    Int @default(0)
+  bans    Int @default(0)
+
+  pickRate Float @default(0)
+  winRate  Float @default(0)
+  banRate  Float @default(0)
+
+  // Accumulateurs de performance (moyennes dérivées au calcul).
+  totalKills    Int @default(0)
+  totalDeaths   Int @default(0)
+  totalAssists  Int @default(0)
+  totalDamage   Int @default(0)
+  totalGold     Int @default(0)
+  totalCs       Int @default(0)
+  totalDuration Int @default(0)
+
+  // Détails (JSON) : builds/runes/sorts les plus fréquents.
+  items  Json?
+  runes  Json?
+  spells Json?
+
+  updatedAt DateTime @updatedAt
+
+  @@unique([championId, role, tier, patch])
+  @@index([role, tier, patch])
+}
+
+// ===================== Suivi de scan & jobs =====================
+
+model ScannedMatch {
+  id        String   @id // matchId
+  patch     String
+  scannedAt DateTime @default(now())
+
+  @@index([patch])
+}
+
+model Job {
+  id        String    @id @default(cuid())
+  type      String // UPDATE_LEADERBOARD, AGGREGATE_TIERLIST...
+  payload   Json?
+  status    JobStatus @default(PENDING)
+  priority  Int       @default(0)
+  error     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status, priority])
+}

@@ -1,0 +1,15 @@
+@use "../abstracts" as *;
+
+.app-main {
+  min-height: calc(100vh - 120px);
+  padding-bottom: space("2xl");
+}
+
+::selection {
+  background: rgba($color-gold, 0.3);
+}
+
+:focus-visible {
+  outline: 2px solid $color-hextech;
+  outline-offset: 2px;
+}
