@@ -8,13 +8,21 @@ const NAV = [
   { href: "/", label: "Accueil" },
   { href: "/leaderboard/euw1", label: "Classement" },
   { href: "/champions", label: "Tier List" },
-  { href: "/design", label: "Design" },
+  { href: "/builder", label: "Theorycraft" },
+  { href: "/map", label: "Carte de Runeterra" },
+  { href: "/news", label: "Actualités" },
 ];
 
 export function Header() {
   const pathname = usePathname();
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith("/" + href.split("/")[1]);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+
+    const baseSegment = `/${href.split("/")[1]}`;
+
+    return pathname === baseSegment || pathname.startsWith(`${baseSegment}/`);
+  };
 
   return (
     <header className="site-header">
@@ -34,6 +42,7 @@ export function Header() {
             </Link>
           ))}
         </nav>
+        {/* Placeholder à remplacer par la région dynamique */}
         <span className="site-header__region">EUW</span>
       </div>
     </header>
