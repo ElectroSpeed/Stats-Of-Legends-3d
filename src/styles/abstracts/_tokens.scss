@@ -1,70 +1,77 @@
-// =====================================================================
-// DESIGN TOKENS — source unique de vérité (couleurs, espacements, etc.)
-// =====================================================================
 @use "sass:map";
-
-// --- Palette de marque (univers LoL) ---
-$color-gold:        #c89b3c;
-$color-gold-light:  #f0e6d2;
-$color-blue:        #1f6feb;
-$color-blue-deep:   #0a1428;
-$color-hextech:     #0ac8b9;
+@use "colors" as *;
 
 // --- Surfaces ---
-$color-bg:          #010a13;
-$color-surface:     #0a1428;
-$color-surface-2:   #1e2328;
-$color-border:      #3c3c41;
-$color-text:        #f0e6d2;
-$color-text-muted:  #a09b8c;
+$color-bg:          $bg;
+$color-surface:     $surface;
+$color-surface-2:   $surface-2;
+$color-surface-3:   $surface-3;
+$color-border:      $border;
+$color-border-soft: $border-soft;
+
+// --- Accent primaire (rouge) ---
+$color-accent:        $primary;
+$color-accent-hover:  $primary-hover;
+$color-accent-bright: $primary;        // pas de rouge clair : on reste foncé
+$color-accent-dim:    $primary-dark;
+$color-accent-soft:   $primary-soft;
+
+// --- 2e couleur (alias "gold" pour compat) ---
+$color-gold:        $secondary;
+$color-gold-bright: $secondary-hover;
+$color-gold-dim:    $secondary-dark;
+$color-gold-soft:   $secondary-soft;
+$color-gold-light:  $secondary-hover;
+
+// --- Texte ---
+$color-text:        $text;
+$color-text-muted:  $text-muted;
+$color-text-faint:  $text-faint;
+$color-ink:         $text;
 
 // --- Sémantique ---
-$color-success:     #16a34a;
-$color-danger:      #dc2626;
-$color-warning:     #d97706;
+$color-success:     $success;
+$color-danger:      $danger;
+$color-win:         $win;
+$color-loss:        $loss;
 
-// --- Échelle d'espacement (base 4px) ---
+// --- Compat divers ---
+$color-hextech:     $primary;
+$color-blue-deep:   #ffffff;
+$color-amber:       $secondary;
+$color-red:         $primary;
+
+// --- Dégradés (single-hue) ---
+$gradient-gold:    linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+$gradient-accent:  linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+$gradient-warm:    linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+$gradient-surface: linear-gradient(180deg, #17171a 0%, #131315 100%);
+
+// --- Espacement ---
 $spacing: (
-  "xs": 0.25rem,
-  "sm": 0.5rem,
-  "md": 1rem,
-  "lg": 1.5rem,
-  "xl": 2.5rem,
-  "2xl": 4rem,
+  "xs": 0.25rem, "sm": 0.5rem, "md": 1rem, "lg": 1.5rem,
+  "xl": 2.5rem, "2xl": 4rem, "3xl": 6.5rem, "4xl": 9rem,
 );
 
-// --- Typographie ---
-$font-sans: "Inter", system-ui, -apple-system, sans-serif;
-$font-display: "Beaufort", "Inter", serif;
-$font-mono: "JetBrains Mono", monospace;
+// --- Typographie (FULL INTER) ---
+$font-sans:    var(--font-sans), "Inter", system-ui, -apple-system, sans-serif;
+$font-serif:   $font-sans;
+$font-display: $font-sans;
+$font-mono:    "JetBrains Mono", ui-monospace, monospace;
 
 $font-size: (
-  "xs": 0.75rem,
-  "sm": 0.875rem,
-  "md": 1rem,
-  "lg": 1.25rem,
-  "xl": 1.75rem,
-  "2xl": 2.5rem,
+  "xs": 0.75rem, "sm": 0.875rem, "md": 1.0625rem, "lg": 1.375rem,
+  "xl": 2rem, "2xl": 3rem, "3xl": 4.25rem, "4xl": 6.5rem,
 );
 
 // --- Rayons & ombres ---
-$radius-sm: 4px;
-$radius-md: 8px;
-$radius-lg: 16px;
-$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 18px;
+$radius-pill: 999px;
+$shadow-md:   0 24px 64px -28px rgba(0, 0, 0, 0.9);
+$shadow-glow: 0 14px 36px -18px rgba(206, 14, 46, 0.5);
+$shadow-gold: 0 14px 36px -18px rgba(0, 0, 0, 0.6);
 
-// --- Z-index ---
-$z: (
-  "base": 1,
-  "overlay": 100,
-  "tooltip": 200,
-  "modal": 300,
-);
-
-// --- Breakpoints ---
-$breakpoints: (
-  "sm": 640px,
-  "md": 768px,
-  "lg": 1024px,
-  "xl": 1280px,
-);
+$z: ("base": 1, "overlay": 100, "tooltip": 200, "modal": 300);
+$breakpoints: ("sm": 640px, "md": 768px, "lg": 1024px, "xl": 1280px);

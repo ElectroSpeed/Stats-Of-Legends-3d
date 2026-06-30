@@ -1,5 +1,4 @@
-// Point d'entrée "abstracts" — forward tokens, fonctions, mixins.
-// Auto-importé partout via next.config.ts (sassOptions.additionalData).
+@forward "colors";
 @forward "tokens";
 @forward "functions";
 @forward "mixins";

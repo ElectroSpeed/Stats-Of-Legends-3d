@@ -1,0 +1,37 @@
+// =====================================================================
+// PALETTE — source unique de vérité. Change ici => tout le site suit.
+// =====================================================================
+
+// --- PRIMARY (rouge T1, foncé & punchy) ---
+$primary:         #ce0e2e;
+$primary-hover:   #a30a24;
+$primary-strong:  #e2012d;
+$primary-dark:    #8a0a20;
+$primary-soft:    #1d070d;
+
+// --- SECONDARY (doré T1) — change ici pour reskin l'accent 2 ---
+//   Alternatives : violet #8B5CFF · bleu acier #6C8CBF · teal #2BC4A8 · crème #EDE6D6
+$secondary:       #c9a24e;
+$secondary-hover: #e6c879;
+$secondary-dark:  #9e7c30;
+$secondary-soft:  #1c1607;
+
+// --- NEUTRES / SURFACES ---
+$bg:           #0b0b0c;
+$surface:      #141416;
+$surface-2:    #1b1b1f;
+$surface-3:    #232328;
+$border:       #2c2c31;
+$border-soft:  #222227;
+
+// --- TEXTE ---
+$text:         #f5f5f6;
+$text-muted:   #b7b7bc;
+$text-faint:   #8a8a90;
+
+// --- SÉMANTIQUE ---
+$success:      #2dc46a;   // VERT victoire
+$success-soft: #0f2418;
+$danger:       $primary-strong;
+$win:          #2dc46a;
+$loss:         $primary-strong;

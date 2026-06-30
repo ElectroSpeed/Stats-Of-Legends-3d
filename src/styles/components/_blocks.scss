@@ -1,0 +1,312 @@
+@use "../abstracts" as *;
+
+/* ---------- BANNER (promo / hero secondaire) ---------- */
+.banner {
+  position: relative; overflow: hidden;
+  border: 1px solid $color-border; border-radius: $radius-lg;
+  padding: space("2xl");
+  background:
+    radial-gradient(620px 300px at 12% -30%, rgba(226,1,45,.18), transparent 70%),
+    linear-gradient(120deg, $color-surface 0%, $color-surface-2 100%);
+}
+.banner__eyebrow { color: $color-gold-bright; }
+.banner__title { font-size: fs("xl"); font-weight: 800; margin: space("sm") 0; max-width: 22ch; }
+.banner__text { color: $color-text-muted; max-width: 50ch; }
+.banner__actions { @include flex(row, flex-start, center, space("sm")); margin-top: space("lg"); flex-wrap: wrap; }
+.banner--accent {
+  border-color: rgba(226,1,45,.4);
+  background:
+    radial-gradient(700px 320px at 90% 120%, rgba(226,1,45,.22), transparent 70%),
+    linear-gradient(120deg, #1a0a0e 0%, $color-surface 100%);
+}
+
+/* ---------- CAROUSEL ---------- */
+.carousel { position: relative; }
+.carousel__viewport { overflow: hidden; border-radius: $radius-lg; }
+.carousel__track { display: flex; transition: transform .5s cubic-bezier(.22,1,.36,1); }
+.carousel__slide {
+  flex: 0 0 100%; min-width: 0;
+  height: 280px;
+  display: flex; align-items: flex-end;
+  padding: space("xl");
+  color: #fff;
+  position: relative;
+}
+.carousel__slide > * { position: relative; z-index: 1; }
+.carousel__slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.6), transparent 60%); }
+.carousel__caption { font-size: fs("lg"); font-weight: 800; }
+.carousel__arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: $radius-pill;
+  background: rgba(12,12,13,.6); border: 1px solid $color-border; color: #fff;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+  &:hover { background: $color-accent; border-color: $color-accent; }
+}
+.carousel__arrow--prev { left: space("md"); }
+.carousel__arrow--next { right: space("md"); }
+.carousel__dots { @include flex(row, center, center, space("xs")); margin-top: space("md"); }
+.carousel__dot {
+  width: 8px; height: 8px; border-radius: $radius-pill; border: none;
+  background: $color-border; cursor: pointer; transition: all .2s ease;
+  &--active { background: $color-accent; width: 22px; }
+}
+
+/* ---------- PUBLICITÉ (ad slots) ---------- */
+.ad {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed $color-border; border-radius: $radius-md;
+  background: repeating-linear-gradient(45deg, $color-surface, $color-surface 12px, $color-surface-2 12px, $color-surface-2 24px);
+  color: $color-text-faint; font-size: fs("sm"); font-weight: 600;
+  overflow: hidden;
+}
+.ad__tag {
+  position: absolute; top: 6px; left: 6px;
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: $color-text-faint; background: rgba(12,12,13,.7);
+  padding: 1px 6px; border-radius: $radius-sm;
+}
+.ad--billboard  { height: 250px; }      /* 970x250 */
+.ad--leaderboard{ height: 90px; }       /* 728x90  */
+.ad--mpu        { width: 300px; height: 250px; }  /* pavé    */
+.ad--sky        { width: 160px; height: 600px; }  /* gratte-ciel */
+.ad-strip { @include flex(row, flex-start, stretch, space("md")); flex-wrap: wrap; }
+
+/* ---------- SPONSORS (marquee) ---------- */
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee__track { display: flex; gap: space("2xl"); width: max-content; animation: marquee 24s linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.sponsor {
+  height: 40px; min-width: 120px; padding-inline: space("lg");
+  display: flex; align-items: center; justify-content: center;
+  color: $color-text-muted; font-weight: 700; letter-spacing: .08em;
+  border: 1px solid $color-border; border-radius: $radius-md;
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- TICKER (scores live) ---------- */
+.ticker {
+  border-block: 1px solid $color-border; overflow: hidden;
+  background: $color-surface; padding-block: space("sm");
+}
+.ticker__track { display: flex; gap: space("xl"); width: max-content; animation: marquee 30s linear infinite; }
+.ticker__item { @include flex(row, center, center, space("sm")); white-space: nowrap; color: $color-text-muted; font-size: fs("sm"); }
+.ticker__live { color: $color-accent-bright; font-weight: 800; }
+.ticker:hover .ticker__track { animation-play-state: paused; }
+
+/* ---------- ALERTES ---------- */
+.alert {
+  @include flex(row, flex-start, flex-start, space("sm"));
+  padding: space("md"); border-radius: $radius-md; border: 1px solid;
+  font-size: fs("sm");
+}
+.alert__icon { flex: 0 0 auto; margin-top: 1px; }
+.alert--info    { background: rgba(201,205,212,.08); border-color: rgba(201,205,212,.3); color: $color-text; }
+.alert--success { background: rgba(234,236,239,.08); border-color: rgba(234,236,239,.35); color: $color-gold-bright; }
+.alert--warn    { background: rgba(224,146,43,.10); border-color: rgba(224,146,43,.4); color: #e9a14e; }
+.alert--error   { background: rgba(226,1,45,.10); border-color: rgba(226,1,45,.45); color: #ff7a8f; }
+
+/* ---------- ONGLETS ---------- */
+.tabs__list { @include flex(row, flex-start, center, space("lg")); border-bottom: 1px solid $color-border; }
+.tabs__tab {
+  position: relative; padding: space("sm") 0; color: $color-text-muted;
+  font-weight: 600; font-size: fs("sm"); cursor: pointer;
+  &::after { content:""; position:absolute; left:0; bottom:-1px; height:2px; width:100%; background:$color-accent; transform:scaleX(0); transition: transform .25s ease; }
+  &:hover { color: $color-text; }
+  &--active { color: $color-text; &::after { transform: scaleX(1); } }
+}
+.tabs__panel { padding-top: space("lg"); color: $color-text-muted; }
+
+/* ---------- ACCORDÉON ---------- */
+.accordion__item { border-bottom: 1px solid $color-border; }
+.accordion__head {
+  @include flex(row, space-between, center, space("md"));
+  width: 100%; padding: space("md") 0; cursor: pointer; text-align: left;
+  font-weight: 600; color: $color-text;
+  .accordion__chev { transition: transform .25s ease; color: $color-text-muted; }
+}
+.accordion__item--open .accordion__chev { transform: rotate(180deg); color: $color-accent-bright; }
+.accordion__body { color: $color-text-muted; font-size: fs("sm"); padding-bottom: space("md"); max-width: 70ch; }
+
+/* ---------- NEWS / ARTICLES ---------- */
+.news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: space("lg"); }
+.news-card { border: 1px solid $color-border; border-radius: $radius-lg; overflow: hidden; background: $color-surface; transition: transform .2s ease, border-color .2s ease; }
+.news-card:hover { transform: translateY(-4px); border-color: rgba(226,1,45,.4); }
+.news-card__media { height: 150px; background: linear-gradient(135deg, $color-surface-3, $color-surface-2); display:flex; align-items:center; justify-content:center; color:$color-text-faint; }
+.news-card__body { padding: space("md"); }
+.news-card__tag { font-size: fs("xs"); text-transform: uppercase; letter-spacing: .1em; color: $color-accent-bright; font-weight: 700; }
+.news-card__title { font-weight: 700; margin: space("xs") 0; }
+.news-card__meta { font-size: fs("xs"); color: $color-text-faint; }
+
+/* ---------- SPOTLIGHT (mise en avant) ---------- */
+.spotlight {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: space("xl");
+  align-items: center;
+  border: 1px solid $color-border; border-radius: $radius-lg; padding: space("xl");
+  background: linear-gradient(120deg, $color-surface, $color-surface-2);
+}
+.spotlight__media { height: 220px; border-radius: $radius-md; background: linear-gradient(135deg, rgba(226,1,45,.25), $color-surface-3); display:flex; align-items:center; justify-content:center; color:#fff; }
+.spotlight__title { font-size: fs("xl"); font-weight: 800; }
+
+/* ---------- SKELETON (chargement) ---------- */
+.skeleton { position: relative; overflow: hidden; background: $color-surface-2; border-radius: $radius-sm; }
+.skeleton::after { content:""; position:absolute; inset:0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent); animation: shimmer 1.4s infinite; }
+.skeleton--line { height: 12px; margin-bottom: space("sm"); }
+.skeleton--title { height: 22px; width: 60%; margin-bottom: space("md"); }
+.skeleton--block { height: 120px; }
+.skeleton--circle { width: 48px; height: 48px; border-radius: 50%; }
+@keyframes shimmer { to { transform: translateX(100%); } }
+
+/* ---------- PAGINATION / BREADCRUMB / STEPS ---------- */
+.pagination { @include flex(row, center, center, space("xs")); }
+.pagination__item {
+  min-width: 38px; height: 38px; padding-inline: space("sm");
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid $color-border; border-radius: $radius-sm; color: $color-text-muted; cursor: pointer;
+  transition: all .2s ease;
+  &:hover { border-color: $color-accent; color: $color-text; }
+  &--active { background: $color-accent; border-color: $color-accent; color: #fff; font-weight: 700; }
+}
+.breadcrumb { @include flex(row, flex-start, center, space("xs")); color: $color-text-faint; font-size: fs("sm"); }
+.breadcrumb a:hover { color: $color-text; }
+.breadcrumb__sep { color: $color-text-faint; }
+
+.steps { @include flex(row, flex-start, center, 0); }
+.step { @include flex(row, center, center, space("sm")); color: $color-text-faint; }
+.step__num { width: 28px; height: 28px; border-radius: 50%; border: 1px solid $color-border; display:flex; align-items:center; justify-content:center; font-size: fs("xs"); font-weight: 700; }
+.step--active .step__num { background: $color-accent; border-color: $color-accent; color: #fff; }
+.step--active { color: $color-text; }
+.step__line { width: 48px; height: 1px; background: $color-border; margin-inline: space("sm"); }
+
+/* ---------- EMPTY STATE ---------- */
+.empty-state { text-align: center; padding: space("2xl"); border: 1px dashed $color-border; border-radius: $radius-lg; color: $color-text-muted; }
+.empty-state__icon { color: $color-text-faint; margin-bottom: space("sm"); }
+.empty-state__title { color: $color-text; font-weight: 700; margin-bottom: space("xs"); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .spotlight { grid-template-columns: 1fr; }
+  .ad--sky { display: none; }
+}
+@media (max-width: 640px) {
+  .banner { padding: space("lg"); }
+  .banner__title { font-size: fs("lg"); }
+  .carousel__slide { height: 200px; padding: space("md"); }
+  .ad--mpu { width: 100%; }
+  .ad--billboard { height: 160px; }
+  .tabs__list { gap: space("md"); overflow-x: auto; }
+  .news-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- PEEK CAROUSEL (3 cartes, aperçu des voisines) ---------- */
+.peek { position: relative; }
+.peek__viewport { overflow: hidden; padding-block: space("sm"); }
+.peek__track { display: flex; transition: transform .55s cubic-bezier(.22,1,.36,1); }
+.peek__slide {
+  flex: 0 0 60%; padding-inline: space("sm");
+  transition: opacity .45s ease, transform .45s ease;
+  opacity: .4; transform: scale(.9);
+}
+.peek__slide.is-active { opacity: 1; transform: scale(1); }
+.peek__card {
+  height: 250px; border-radius: $radius-lg; border: 1px solid $color-border;
+  display: flex; align-items: flex-end; padding: space("lg"); color: #fff;
+  position: relative; overflow: hidden;
+}
+.peek__card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.62), transparent 62%); }
+.peek__caption { position: relative; z-index: 1; font-weight: 800; font-size: fs("lg"); }
+.peek__arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: $radius-pill;
+  background: rgba(11,11,12,.7); border: 1px solid $color-border; color: #fff;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2;
+  transition: background .2s ease, border-color .2s ease;
+  &:hover { background: $color-accent; border-color: $color-accent; }
+}
+.peek__arrow--prev { left: space("sm"); }
+.peek__arrow--next { right: space("sm"); }
+@media (max-width: 640px) { .peek__slide { flex: 0 0 86%; } }
+
+/* ---------- RINGS (cercles de progression, conic-gradient) ---------- */
+.ring-row { display: flex; gap: space("xl"); flex-wrap: wrap; }
+.ring-item { @include flex(column, center, center, space("sm")); }
+.ring {
+  position: relative; width: 118px; height: 118px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: conic-gradient($color-accent calc(var(--p) * 1%), $color-surface-3 0);
+}
+.ring::before { content: ""; position: absolute; width: 88px; height: 88px; border-radius: 50%; background: $color-bg; }
+.ring--gold { background: conic-gradient($color-gold calc(var(--p) * 1%), $color-surface-3 0); }
+.ring--win  { background: conic-gradient($color-win  calc(var(--p) * 1%), $color-surface-3 0); }
+.ring__val { position: relative; z-index: 1; font-weight: 800; font-size: fs("lg"); }
+.ring__label { font-size: fs("xs"); color: $color-text-muted; text-transform: uppercase; letter-spacing: .1em; }
+
+/* ---------- COMPARAISON (versus, double barre) ---------- */
+.cmp { display: flex; flex-direction: column; gap: space("md"); }
+.cmp__head { @include flex(row, space-between, center, space("md")); font-weight: 700; }
+.cmp__head .a { color: $color-accent-bright; }
+.cmp__head .b { color: $color-gold-bright; }
+.cmp__row { display: grid; grid-template-columns: 56px 1fr 56px; gap: space("sm"); align-items: center; }
+.cmp__num { font-weight: 700; font-size: fs("sm"); }
+.cmp__num.a { text-align: right; }
+.cmp__bar { height: 10px; border-radius: $radius-pill; overflow: hidden; display: flex; background: $color-surface-3; }
+.cmp__fill-a { background: $color-accent; }
+.cmp__fill-b { background: $color-gold; }
+.cmp__label { text-align: center; font-size: fs("xs"); color: $color-text-faint; margin-bottom: 4px; }
+
+/* ---------- SELECT custom (menu déroulant propre) ---------- */
+.select-c { position: relative; width: 100%; max-width: 280px; }
+.select-c__btn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: space("sm");
+  background: $color-surface-2; border: 1px solid $color-border; border-radius: $radius-sm;
+  padding: space("sm") space("md"); color: $color-text; font-size: fs("sm"); cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease;
+  &:hover { border-color: $color-text-faint; }
+  &[aria-expanded="true"] { border-color: $color-accent; box-shadow: 0 0 0 3px rgba($color-accent, .12);
+    .select-c__chev { transform: rotate(180deg); } }
+}
+.select-c__chev { color: $color-text-faint; transition: transform .2s ease; }
+.select-c__menu {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: z("overlay");
+  background: $color-surface-2; border: 1px solid $color-border; border-radius: $radius-md;
+  box-shadow: $shadow-md; padding: 6px; list-style: none;
+}
+.select-c__opt {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: space("sm") space("md"); border-radius: $radius-sm; cursor: pointer;
+  font-size: fs("sm"); color: $color-text; transition: background .15s ease, color .15s ease;
+  &:hover { background: $color-surface-3; }
+  &.is-sel { color: $color-gold-bright; }
+}
+
+/* ---------- SCROLL CAROUSEL (drag + molette à la souris) ---------- */
+.scarousel { position: relative; }
+.scarousel__track {
+  display: flex; gap: space("md");
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none;
+  cursor: grab; padding: space("xs") 2px;
+}
+.scarousel__track::-webkit-scrollbar { display: none; }
+.scarousel__track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+.scarousel__track > * { scroll-snap-align: start; flex: 0 0 auto; }
+.scarousel__arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 40px; height: 40px; border-radius: $radius-pill;
+  background: rgba(11,11,12,.82); border: 1px solid $color-border; color: #fff;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+  &:hover { background: $color-accent; border-color: $color-accent; }
+}
+.scarousel__arrow--prev { left: -6px; }
+.scarousel__arrow--next { right: -6px; }
+
+/* Flèches désactivées (carrousels non-infinis) */
+.carousel__arrow:disabled, .peek__arrow:disabled { opacity: .3; cursor: not-allowed; pointer-events: none; }
+
+/* Flèches du scroll-carousel : discrètes au repos, masquées au survol (on scrolle à la souris) */
+.scarousel__arrow { opacity: .5; transition: opacity .2s ease, background .2s ease, border-color .2s ease; }
+.scarousel:hover .scarousel__arrow { opacity: 0; pointer-events: none; }

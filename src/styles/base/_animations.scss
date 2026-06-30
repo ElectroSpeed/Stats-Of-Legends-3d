@@ -1,0 +1,29 @@
+@use "../abstracts" as *;
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes gradient-pan { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+@keyframes glow-pulse { 0%, 100% { opacity: .5; } 50% { opacity: .9; } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+
+// Reveal au scroll (JS ajoute .is-in)
+.reveal { opacity: 0; }
+.reveal.is-in { animation: fade-up .85s cubic-bezier(.22,1,.36,1) forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-in { opacity: 1; animation: none; }
+}
+
+.anim-float { animation: float-y 7s ease-in-out infinite; }
+.hover-lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.hover-lift:hover { transform: translateY(-6px); box-shadow: $shadow-glow; border-color: rgba(226,1,45,.45); }
+
+// Texte dégradé feu (animé)
+.grad-fire { color: #ff2d4e; }
+
+// Bordure dégradée
+.grad-border {
+  border: 1px solid transparent;
+  background:
+    linear-gradient($color-surface, $color-surface) padding-box,
+    $gradient-accent border-box;
+}

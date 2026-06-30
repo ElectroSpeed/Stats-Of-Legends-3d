@@ -1,0 +1,11 @@
+@use "../abstracts" as *;
+
+.data-table {
+  width: 100%; border-collapse: collapse;
+  th, td { text-align: left; padding: space("sm") space("md"); border-bottom: 1px solid $color-border; }
+  th { font-size: fs("xs"); text-transform: uppercase; letter-spacing: .1em; color: $color-text-faint; font-weight: 600; }
+  tbody tr { transition: background .2s ease; }
+  tbody tr:hover { background: $color-surface-2; }
+  &__rank { font-weight: 800; color: $color-accent-bright; }
+  a:hover { color: $color-accent-bright; }
+}

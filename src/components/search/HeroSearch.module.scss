@@ -1,0 +1,15 @@
+.form { width: 100%; max-width: 700px; }
+.region {
+  background: transparent; border: none; color: $color-text;
+  font-weight: 700; letter-spacing: .04em; cursor: pointer;
+  padding-right: space("md"); border-right: 1px solid $color-border;
+  &:focus { outline: none; }
+  option { background: $color-surface-2; color: $color-text; }
+}
+.icon { color: $color-text-faint; flex: 0 0 auto; }
+.input {
+  flex: 1; min-width: 0; background: none; border: none; color: $color-text; font-size: fs("md");
+  &::placeholder { color: $color-text-faint; }
+  &:focus { outline: none; }
+}
+.submit { border-radius: $radius-pill; padding-inline: space("lg"); }

@@ -3,12 +3,27 @@
 body {
   font-family: $font-sans;
   font-size: fs("md");
+  line-height: 1.6;
   color: $color-text;
   background: $color-bg;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3 {
-  font-family: $font-display;
-  line-height: 1.2;
-  color: $color-gold-light;
+  font-family: $font-sans;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: $color-text;
 }
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: fs("xs");
+  font-weight: 700;
+  color: $color-accent;
+}
+
+.italic-accent, .text-gradient { color: $color-accent; font-style: normal; }

@@ -1,18 +1,23 @@
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: space("xs");
   padding: space("sm") space("lg");
-  border: 1px solid $color-border;
-  border-radius: $radius-md;
+  border-radius: $radius-sm;
+  font-size: fs("sm");
   font-weight: 600;
-  transition: background 0.15s ease;
+  transition: opacity 0.25s ease, background 0.25s ease, color 0.25s ease;
 }
-
 .primary {
-  background: $color-gold;
-  color: $color-blue-deep;
-  border-color: $color-gold;
+  background: $color-ink;
+  color: #fff;
+  border: 1px solid $color-ink;
+  &:hover { opacity: 0.85; }
 }
-
 .ghost {
   background: transparent;
-  color: $color-text;
+  color: $color-ink;
+  border: 1px solid $color-border;
+  &:hover { border-color: $color-ink; }
 }

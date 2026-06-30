@@ -1,0 +1,23 @@
+@use "../abstracts" as *;
+
+.sg { @include container(1200px); padding-block: space("2xl") space("3xl"); }
+.sg__title { font-size: fs("2xl"); font-weight: 800; letter-spacing: -0.03em; }
+.sg__sub { color: $color-text-muted; margin-top: space("xs"); max-width: 60ch; }
+
+.sg-section { padding-block: space("xl"); border-top: 1px solid $color-border; }
+.sg-section__title {
+  font-size: fs("xs"); text-transform: uppercase; letter-spacing: .18em;
+  font-weight: 700; color: $color-accent; margin-bottom: space("lg");
+}
+
+.sg-row { display: flex; gap: space("md"); flex-wrap: wrap; align-items: center; }
+.sg-stack { display: flex; flex-direction: column; gap: space("md"); }
+.sg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: space("lg"); }
+.sg-grid--sm { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+
+.sg-cap { width: 100%; font-size: fs("xs"); color: $color-text-faint;
+  text-transform: uppercase; letter-spacing: .1em; margin-bottom: space("sm"); }
+
+.sg-swatch__chip { height: 64px; border-radius: $radius-md; border: 1px solid $color-border; }
+.sg-swatch__name { font-size: fs("sm"); font-weight: 600; margin-top: space("xs"); }
+.sg-swatch__hex { font-size: fs("xs"); color: $color-text-faint; font-family: $font-mono; }

@@ -1,0 +1,36 @@
+@use "../abstracts" as *;
+
+.app-main { min-height: 72vh; }
+.container { @include container(1180px); }
+.section { padding-block: space("3xl"); }
+
+.display {
+  font-family: $font-sans;
+  font-size: clamp(2.8rem, 9vw, fs("3xl"));
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  margin: space("md") 0;
+}
+.lede { max-width: 50ch; color: $color-text-muted; font-size: fs("lg"); line-height: 1.65; }
+.rule { height: 1px; width: 100%; background: $color-border; }
+
+:focus-visible { outline: 2px solid $color-accent-bright; outline-offset: 3px; }
+
+// Fond : une seule lumière rouge, CENTRÉE en haut (symétrique), + léger grain.
+body::after {
+  content: "";
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(900px 500px at 50% -12%, rgba(226, 1, 45, 0.12), transparent 70%);
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+body > * { position: relative; z-index: 1; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: $color-border; border-radius: 20px; }
+::-webkit-scrollbar-thumb:hover { background: $color-accent-dim; }

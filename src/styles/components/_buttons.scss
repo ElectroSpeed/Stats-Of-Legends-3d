@@ -1,0 +1,31 @@
+@use "../abstracts" as *;
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: space("xs");
+  padding: space("sm") space("lg");
+  border-radius: $radius-sm;
+  font-size: fs("sm"); font-weight: 600;
+  border: 1px solid transparent; cursor: pointer;
+  transition: transform .12s ease, background .2s ease, color .2s ease,
+              border-color .2s ease, filter .2s ease, opacity .2s ease;
+  &:active { transform: translateY(1px); }
+  &:disabled { opacity: .4; cursor: not-allowed; pointer-events: none; }
+
+  &--primary { background: $color-accent; color: #fff; border-color: $color-accent;
+    &:hover { background: $color-accent-hover; border-color: $color-accent-hover; } }
+  &--light, &--gold { background: $color-gold; color: #15151a; border-color: $color-gold;
+    &:hover { background: $color-gold-dim; } }
+  &--outline { color: $color-accent; border-color: rgba($color-accent, .6);
+    &:hover { background: rgba($color-accent, .14); border-color: $color-accent; } }
+  &--ghost   { color: $color-text; &:hover { background: $color-surface-2; } }
+  &--subtle  { background: $color-surface-2; color: $color-text; border-color: $color-border;
+    &:hover { border-color: $color-accent; color: $color-accent; } }
+  &--danger  { background: $color-accent-dim; color: #fff; border-color: $color-accent-dim;
+    &:hover { filter: brightness(1.1); } }
+
+  &--sm { padding: space("xs") space("md"); font-size: fs("xs"); }
+  &--lg { padding: space("md") space("xl"); font-size: fs("md"); }
+  &--icon { padding: 0; width: 40px; height: 40px; }
+  &--block { width: 100%; }
+}

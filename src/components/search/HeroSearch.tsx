@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
 import { PLATFORMS } from "@/lib/regions";
-import styles from "./SearchBar.module.scss";
+import styles from "./HeroSearch.module.scss";
 
-export function SearchBar() {
+export function HeroSearch() {
   const router = useRouter();
   const [region, setRegion] = useState(process.env.NEXT_PUBLIC_DEFAULT_PLATFORM ?? "euw1");
   const [riotId, setRiotId] = useState("");
@@ -19,7 +19,7 @@ export function SearchBar() {
   }
 
   return (
-    <form className={styles.form} onSubmit={onSubmit} role="search">
+    <form className={`search-pill ${styles.form}`} onSubmit={onSubmit} role="search">
       <select
         className={styles.region}
         value={region}
@@ -27,10 +27,12 @@ export function SearchBar() {
         aria-label="Région"
       >
         {PLATFORMS.map((p) => (
-          <option key={p} value={p}>{p.toUpperCase()}</option>
+          <option key={p} value={p}>
+            {p.toUpperCase()}
+          </option>
         ))}
       </select>
-
+      <Search size={18} className={styles.icon} aria-hidden />
       <input
         className={styles.input}
         type="text"
@@ -40,10 +42,8 @@ export function SearchBar() {
         aria-label="Riot ID"
         maxLength={64}
       />
-
-      <button className={styles.submit} type="submit" aria-label="Rechercher">
-        <span>Rechercher</span>
-        <ArrowRight size={18} aria-hidden />
+      <button className={`btn btn--primary ${styles.submit}`} type="submit">
+        Rechercher <ArrowRight size={16} aria-hidden />
       </button>
     </form>
   );

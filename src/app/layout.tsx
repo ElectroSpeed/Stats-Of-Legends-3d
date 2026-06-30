@@ -1,26 +1,29 @@
 import type { Metadata } from "next";
-import { Providers } from "./providers";
+import { Inter } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "@/styles/main.scss";
 
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
 export const metadata: Metadata = {
   title: { default: "Stats Of Legends", template: "%s · Stats Of Legends" },
-  description:
-    "Statistiques League of Legends : profils d'invocateurs, historiques de parties, leaderboards et tier list des champions.",
+  description: "Statistiques League of Legends — profils, classements et tier list.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
-  openGraph: { title: "Stats Of Legends", type: "website" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={sans.variable}>
       <body>
-        <Providers>
-          <Header />
-          <main className="app-main">{children}</main>
-          <Footer />
-        </Providers>
+        <Header />
+        <main className="app-main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -1,0 +1,38 @@
+@use "../abstracts" as *;
+
+.list { display: flex; flex-direction: column; }
+.list__row {
+  @include flex(row, space-between, center, space("md"));
+  padding: space("md") 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.match-row {
+  @include flex(row, space-between, center, space("lg"));
+  flex-wrap: wrap;
+  padding: space("md") space("lg");
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+  &:hover { transform: translateY(-2px); }
+}
+.match-row--win {
+  border-color: rgba($color-win, .35);
+  background: rgba($color-win, .05);
+  &:hover { border-color: rgba($color-win, .55); background: rgba($color-win, .08); }
+}
+.match-row--loss {
+  border-color: rgba($color-loss, .35);
+  background: rgba($color-loss, .05);
+  &:hover { border-color: rgba($color-loss, .55); background: rgba($color-loss, .08); }
+}
+.match-row__col { @include flex(column, center, flex-start, 2px); }
+.match-row__muted { color: $color-text-faint; font-size: fs("xs"); }
+
+.stat-line {
+  @include flex(row, space-between, baseline, space("sm"));
+  padding: space("xs") 0;
+  &__label { color: $color-text-muted; font-size: fs("sm"); }
+  &__value { font-weight: 700; }
+}

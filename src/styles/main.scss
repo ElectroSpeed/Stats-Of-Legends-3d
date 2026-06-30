@@ -1,5 +1,17 @@
-// Feuille globale unique (importée dans app/layout.tsx).
-// Les abstracts sont auto-injectés via next.config.ts.
+// Point d'entrée global — architecture 7-1.
 @use "base/reset";
 @use "base/typography";
-@use "base/app";
+@use "base/helpers";
+@use "base/animations";
+@use "layout/header";
+@use "layout/footer";
+@use "components/buttons";
+@use "components/badges";
+@use "components/cards";
+@use "components/table";
+@use "components/list";
+@use "components/slots";
+@use "components/forms";
+@use "components/feedback";
+@use "components/blocks";
+@use "pages/styleguide";

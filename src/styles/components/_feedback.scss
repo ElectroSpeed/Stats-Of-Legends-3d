@@ -1,0 +1,51 @@
+@use "../abstracts" as *;
+
+.meter { height: 8px; border-radius: $radius-pill; background: $color-surface-3; overflow: hidden; }
+.meter__fill { height: 100%; border-radius: $radius-pill; background: $gradient-gold; transition: width .4s ease; }
+.meter--danger .meter__fill { background: linear-gradient(90deg, #e5544b, #ff7a72); }
+
+.segmented {
+  display: inline-flex; padding: 4px; gap: 2px;
+  background: $color-surface-2; border: 1px solid $color-border; border-radius: $radius-pill;
+}
+.segmented__item {
+  padding: space("xs") space("md"); border-radius: $radius-pill;
+  font-size: fs("sm"); color: $color-text-muted; transition: all .2s ease;
+  &:hover { color: $color-text; }
+  &--active { background: $color-accent; color: $color-blue-deep; font-weight: 700; }
+}
+
+.chip {
+  display: inline-flex; align-items: center; gap: space("xs");
+  padding: space("xs") space("md"); border-radius: $radius-pill;
+  border: 1px solid $color-border; color: $color-text-muted; font-size: fs("sm");
+  cursor: pointer; transition: all .2s ease;
+  &:hover { border-color: $color-accent; color: $color-text; }
+  &--active { background: rgba($color-accent, .14); border-color: $color-accent; color: $color-accent-bright; }
+}
+
+.avatar { position: relative; width: 64px; height: 64px; }
+.avatar__img {
+  width: 100%; height: 100%; border-radius: $radius-md; border: 2px solid $color-accent;
+  display: flex; align-items: center; justify-content: center; color: $color-accent;
+  background: linear-gradient(135deg, $color-surface-3, $color-surface-2);
+}
+.avatar__level {
+  position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+  background: $color-surface-3; border: 1px solid $color-border; border-radius: $radius-pill;
+  padding: 0 space("sm"); font-size: fs("xs"); font-weight: 700;
+}
+
+.tooltip { position: relative; display: inline-flex; }
+.tooltip__bubble {
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: $color-surface-3; border: 1px solid $color-border; color: $color-text;
+  padding: space("xs") space("sm"); border-radius: $radius-sm; font-size: fs("xs");
+  white-space: nowrap; opacity: 0; pointer-events: none; transition: all .2s ease; z-index: z("tooltip");
+}
+.tooltip:hover .tooltip__bubble { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.kpi { @include flex(column, center, flex-start, 2px); }
+.kpi__value { font-size: fs("xl"); font-weight: 800; }
+.kpi__label { font-size: fs("xs"); color: $color-text-faint; text-transform: uppercase; letter-spacing: .1em; }

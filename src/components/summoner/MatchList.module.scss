@@ -1,3 +1,3 @@
-.list { @include flex(column, flex-start, stretch, space("sm")); }
-.error { color: $color-danger; }
+.list { @include flex(column, flex-start, stretch, 0); }
+.error { color: $color-loss; }
 .empty { color: $color-text-muted; }

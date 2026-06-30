@@ -1,0 +1,47 @@
+@use "../abstracts" as *;
+
+.site-footer {
+  @include container(1280px);
+  padding-block: space("3xl") space("xl");
+
+  &__top {
+    @include flex(row, space-between, flex-end, space("lg"));
+    flex-wrap: wrap;
+    margin-bottom: space("xl");
+  }
+
+  &__wordmark {
+    font-size: fs("2xl");
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: $color-text;
+    em { font-style: normal; color: $color-accent; }
+  }
+
+  &__nav { @include flex(column, flex-start, flex-end, space("sm")); }
+  &__links {
+    @include flex(row, flex-end, center, space("lg"));
+    flex-wrap: wrap;
+    a { font-size: fs("sm"); color: $color-text-muted; &:hover { color: $color-accent; } }
+  }
+  &__socials {
+    @include flex(row, flex-end, center, space("sm"));
+    a {
+      @include flex(row, center, center);
+      width: 36px; height: 36px;
+      border: 1px solid $color-border;
+      border-radius: $radius-pill;
+      color: $color-text-muted;
+      transition: all 0.25s ease;
+      &:hover { color: $color-accent; border-color: $color-accent; }
+    }
+  }
+
+  &__bottom {
+    @include flex(row, space-between, center, space("md"));
+    flex-wrap: wrap;
+    margin-top: space("md");
+    font-size: fs("xs");
+    color: $color-text-faint;
+  }
+}

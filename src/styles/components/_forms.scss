@@ -1,0 +1,39 @@
+@use "../abstracts" as *;
+
+.field { display: flex; flex-direction: column; gap: space("xs"); }
+.field__label { font-size: fs("xs"); text-transform: uppercase; letter-spacing: .1em; color: $color-text-faint; }
+
+.input, .select {
+  background: $color-surface-2; border: 1px solid $color-border; border-radius: $radius-sm;
+  padding: space("sm") space("md"); color: $color-text; font-size: fs("sm");
+  transition: border-color .2s ease, box-shadow .2s ease;
+  &::placeholder { color: $color-text-faint; }
+  &:focus { outline: none; border-color: $color-accent; box-shadow: 0 0 0 3px rgba($color-accent, .1); }
+}
+
+.search-pill {
+  display: flex; align-items: center; gap: space("md");
+  min-height: 58px;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-pill;
+  padding: 8px 8px 8px space("lg");
+  transition: border-color .2s ease, box-shadow .2s ease;
+  &:focus-within { border-color: rgba($color-accent, .6); box-shadow: 0 0 0 4px rgba($color-accent, .12); }
+  input {
+    flex: 1; min-width: 0; height: 100%;
+    background: none; border: none; color: $color-text; font-size: fs("md");
+    &::placeholder { color: $color-text-faint; }
+    &:focus { outline: none; }
+  }
+}
+
+.switch {
+  position: relative; width: 46px; height: 26px; border-radius: $radius-pill;
+  background: $color-surface-3; border: 1px solid $color-border; cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+  &::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px;
+    border-radius: 50%; background: $color-text-muted; transition: transform .2s ease, background .2s ease; }
+  &--on { background: rgba($color-accent, .25); border-color: $color-accent;
+    &::after { transform: translateX(20px); background: $color-accent; } }
+}

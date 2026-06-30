@@ -1,21 +1,29 @@
 .row {
-  @include flex(row, space-between, center, space("md"));
+  @include flex(row, space-between, center, space("lg"));
   flex-wrap: wrap;
-  padding: space("sm") space("md");
-  border-radius: $radius-md;
-  border-left: 4px solid transparent;
-  background: $color-surface;
+  padding: space("md") 0;
+  border-bottom: 1px solid $color-border;
+  position: relative;
+  padding-left: space("md");
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0; top: space("md"); bottom: space("md");
+    width: 2px;
+  }
 }
-.win { border-left-color: $color-success; }
-.loss { border-left-color: $color-danger; }
-.result { @include flex(column, center, flex-start, 2px); min-width: 90px; }
-.meta { font-size: fs("xs"); color: $color-text-muted; }
-.champ { @include flex(column, center, flex-start, 2px); min-width: 120px; }
-.champName { font-weight: 700; }
-.role { font-size: fs("xs"); color: $color-text-muted; }
+.win::before { background: $color-win; }
+.loss::before { background: $color-loss; }
+.result { @include flex(column, center, flex-start, 2px); min-width: 96px; }
+.meta { font-size: fs("xs"); color: $color-text-faint; }
+.champ { @include flex(column, center, flex-start, 2px); min-width: 130px; }
+.champName { font-family: $font-serif; font-size: fs("md"); }
+.role { font-size: fs("xs"); color: $color-text-faint; text-transform: uppercase; letter-spacing: 0.08em; }
 .kda { @include flex(column, center, flex-start, 2px); min-width: 110px; }
-.deaths { color: $color-danger; }
+.deaths { color: $color-loss; }
 .ratio { font-size: fs("xs"); color: $color-text-muted; }
 .stats { @include flex(column, center, flex-start, 2px); font-size: fs("xs"); color: $color-text-muted; }
-.items { @include flex(row, flex-start, center, 2px); flex-wrap: wrap; }
-.item { border-radius: $radius-sm; background: $color-surface-2; }
+.items { @include flex(row, flex-start, center, 3px); flex-wrap: wrap; }
+.item { border-radius: $radius-sm; background: $color-surface-3; }
+.score { min-width: 56px; text-align: right; }

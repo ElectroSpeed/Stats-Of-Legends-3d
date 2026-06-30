@@ -1,0 +1,53 @@
+@use "../abstracts" as *;
+
+.badge {
+  display: inline-flex; align-items: center; gap: space("xs");
+  padding: 3px space("sm"); border-radius: $radius-sm;
+  font-size: fs("xs"); font-weight: 700; letter-spacing: .02em;
+}
+.badge--accent  { background: rgba($color-accent, .18); color: $color-accent-bright; }
+.badge--win     { background: rgba($color-win, .16);   color: $color-win; }      // VERT
+.badge--loss    { background: rgba($color-loss, .16);  color: #ff6b80; }         // rouge clair lisible
+.badge--neutral { background: $color-surface-3;        color: $color-text-muted; }
+.badge--outline { border: 1px solid $color-border;     color: $color-text-muted; }
+.badge--gold    { background: rgba($color-gold, .16);  color: $color-gold-bright; } // violet (secondary)
+
+// --- TIERS : spectre infra-rouge (haut) -> ultra-violet (bas) ---
+$tiers: (
+  "s-plus":  #ff3b3b,
+  "s":       #ff6a2d,
+  "s-minus": #ff9024,
+  "a-plus":  #ffb52e,
+  "a":       #ffd431,
+  "a-minus": #c9e02f,
+  "b-plus":  #82e049,
+  "b":       #2dc46a,
+  "b-minus": #1fcab0,
+  "c-plus":  #25b4e6,
+  "c":       #3d8bff,
+  "c-minus": #5f6dff,
+  "d-plus":  #8b5cff,
+  "d":       #a85cff,
+  "d-minus": #c45cff,
+);
+
+.tier {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 42px; height: 34px; padding: 0 space("sm");
+  border-radius: $radius-sm; font-weight: 800; font-size: fs("sm");
+}
+@each $name, $col in $tiers {
+  .tier--#{$name} {
+    background: rgba($col, .16);
+    color: $col;
+    box-shadow: inset 0 0 0 1px rgba($col, .42);
+  }
+}
+
+.rank-pill {
+  display: inline-flex; align-items: center; gap: space("xs");
+  padding: space("xs") space("md"); border-radius: $radius-pill;
+  font-weight: 700; font-size: fs("xs");
+  background: rgba($color-gold, .14); color: $color-gold-bright;
+  border: 1px solid rgba($color-gold, .35);
+}

@@ -1,5 +1,5 @@
 .card { min-width: 240px; }
-.queue { color: $color-text-muted; font-size: fs("sm"); }
-.tier { font-family: $font-display; font-size: fs("lg"); color: $color-gold; margin-block: space("xs"); }
-.record { font-size: fs("sm"); }
-.wr { color: $color-text-muted; }
+.queue { color: $color-text-muted; font-size: fs("xs"); letter-spacing: 0.08em; text-transform: uppercase; }
+.tier { font-family: $font-serif; font-size: fs("lg"); color: $color-ink; margin-block: space("xs"); }
+.record { font-size: fs("sm"); color: $color-text-muted; }
+.wr { color: $color-accent; }

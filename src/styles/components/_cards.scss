@@ -1,0 +1,32 @@
+@use "../abstracts" as *;
+
+.card {
+  background: $gradient-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: space("lg");
+}
+.card--interactive {
+  cursor: pointer;
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+  &:hover { transform: translateY(-5px); border-color: rgba($color-accent, .5); box-shadow: $shadow-glow; }
+}
+.card__head { @include flex(row, space-between, center); margin-bottom: space("md"); }
+.card__title { font-weight: 700; }
+.card__body { color: $color-text-muted; font-size: fs("sm"); line-height: 1.6; }
+
+.stat-card__label { font-size: fs("xs"); text-transform: uppercase; letter-spacing: .12em; color: $color-text-faint; }
+.stat-card__value { font-size: fs("xl"); font-weight: 800; margin-top: space("xs"); }
+.stat-card__delta { font-size: fs("sm"); font-weight: 600; margin-top: space("xs"); }
+.stat-card__delta--up { color: $color-win; }
+.stat-card__delta--down { color: $color-loss; }
+
+.champ-card { text-align: center; }
+.champ-card__img {
+  width: 84px; height: 84px; border-radius: $radius-md; margin: 0 auto space("sm");
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(226, 1, 45, 0.18);
+  border: 1px solid rgba(226, 1, 45, 0.3); color: #fff;
+}
+.champ-card__name { font-weight: 700; }
+.champ-card__meta { font-size: fs("xs"); color: $color-text-muted; margin-top: 2px; }

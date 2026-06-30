@@ -1,16 +1,15 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-
-  th, td {
-    text-align: left;
-    padding: space("sm") space("md");
-    border-bottom: 1px solid $color-border;
+  th, td { text-align: left; padding: space("md") space("md"); border-bottom: 1px solid $color-border; }
+  th {
+    color: $color-text-faint; font-size: fs("xs"); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
   }
-  th { color: $color-text-muted; font-size: fs("sm"); }
-  tbody tr:hover { background: $color-surface; }
-  a:hover { color: $color-gold; }
+  tbody tr { transition: background 0.2s ease; }
+  tbody tr:hover { background: $color-surface-2; }
+  a:hover { color: $color-accent; }
 }
-.rank { font-weight: 700; color: $color-gold; }
-.tag { color: $color-text-muted; margin-left: 2px; }
-.empty { color: $color-text-muted; }
+.rank { font-family: $font-serif; font-size: fs("lg"); color: $color-ink; width: 64px; }
+.tag { color: $color-text-faint; margin-left: 2px; }
+.empty { color: $color-text-muted; font-size: fs("md"); }

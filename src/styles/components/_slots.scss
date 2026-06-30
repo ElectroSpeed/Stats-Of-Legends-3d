@@ -1,0 +1,19 @@
+@use "../abstracts" as *;
+
+.slot-grid { display: flex; gap: space("xs"); flex-wrap: wrap; align-items: center; }
+.slot {
+  width: 44px; height: 44px; border-radius: $radius-sm;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s ease;
+}
+.slot--empty {
+  border: 1px solid $color-border; color: $color-text-faint;
+  &:hover { border-color: $color-accent; color: $color-accent; }
+}
+.slot--filled {
+  background: linear-gradient(135deg, $color-surface-3, $color-surface-2);
+  border: 1px solid $color-border; color: $color-accent-bright;
+  &:hover { border-color: $color-accent; box-shadow: $shadow-glow; }
+}
+.slot--trinket { border-radius: $radius-pill; }
+.slot--lg { width: 56px; height: 56px; }

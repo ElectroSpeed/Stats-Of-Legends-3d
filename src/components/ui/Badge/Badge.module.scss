@@ -5,10 +5,10 @@
   padding: 2px space("sm");
   border-radius: $radius-sm;
   font-size: fs("xs");
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
-.win { background: rgba($color-success, 0.15); color: lighten($color-success, 15%); }
-.loss { background: rgba($color-danger, 0.15); color: lighten($color-danger, 10%); }
-.gold { background: rgba($color-gold, 0.15); color: $color-gold; }
-.neutral { background: $color-surface-2; color: $color-text-muted; }
+.win { background: rgba(47, 122, 85, 0.12); color: $color-win; }
+.loss { background: rgba(178, 59, 59, 0.12); color: $color-loss; }
+.gold { background: $color-accent-soft; color: $color-accent-dim; }
+.neutral { background: $color-surface-3; color: $color-text-muted; }

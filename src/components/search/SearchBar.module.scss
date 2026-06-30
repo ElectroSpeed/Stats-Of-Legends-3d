@@ -1,35 +1,40 @@
 .form {
-  @include flex(row, center, stretch, 0);
+  @include flex(row, space-between, center, space("md"));
   width: 100%;
-  max-width: 560px;
-  border: 1px solid $color-border;
-  border-radius: $radius-md;
-  overflow: hidden;
-  background: $color-surface;
-
-  &:focus-within { border-color: $color-hextech; }
+  border-bottom: 1.5px solid $color-ink;
+  padding-block: space("sm");
 }
 .region {
-  background: $color-surface-2;
-  color: $color-text;
-  border: none;
-  padding-inline: space("sm");
+  font-size: fs("sm");
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-text-muted;
   cursor: pointer;
+  padding-right: space("md");
+  border-right: 1px solid $color-border;
+  option { background: $color-surface; }
+  &:focus { outline: none; }
 }
 .input {
   flex: 1;
   background: transparent;
   border: none;
-  color: $color-text;
-  padding: space("sm") space("md");
-  font-size: fs("md");
+  font-size: fs("lg");
+  font-family: $font-serif;
+  color: $color-ink;
+  &::placeholder { color: $color-text-faint; }
   &:focus { outline: none; }
 }
-.button {
-  background: $color-gold;
-  color: $color-blue-deep;
-  border: none;
-  padding-inline: space("lg");
-  font-weight: 700;
-  &:hover { background: $color-gold-light; }
+.submit {
+  @include flex(row, center, center, space("xs"));
+  font-size: fs("sm");
+  font-weight: 600;
+  color: $color-ink;
+  white-space: nowrap;
+  transition: gap 0.25s ease, color 0.25s ease;
+  &:hover { gap: space("sm"); color: $color-accent; }
+}
+@media (max-width: 640px) {
+  .submit span { display: none; }
+  .input { font-size: fs("md"); }
 }
